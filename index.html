@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SolarRent — Power Your Home with Clean Solar Energy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --yellow: #F59E0B;
+      --yellow-light: #FEF3C7;
+      --yellow-dark: #D97706;
+      --orange: #F97316;
+      --orange-light: #FFF7ED;
+      --green: #22C55E;
+      --green-light: #F0FDF4;
+      --green-dark: #16A34A;
+      --white: #FFFFFF;
+      --gray-50: #F9FAFB;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-300: #D1D5DB;
+      --gray-400: #9CA3AF;
+      --gray-500: #6B7280;
+      --gray-600: #4B5563;
+      --gray-700: #374151;
+      --gray-800: #1F2937;
+      --gray-900: #111827;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+      --shadow-xl: 0 25px 50px -12px rgba(0,0,0,0.15);
+      --radius: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--gray-800);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-100);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 17px;
+      box-shadow: 0 4px 12px rgba(245,158,11,0.35);
+    }
+
+    .nav-logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--gray-900);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo-text span {
+      color: var(--yellow-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray-600);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gray-900);
+      background: var(--gray-100);
+    }
+
+    .btn-nav {
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: white !important;
+      padding: 8px 20px !important;
+      border-radius: 10px !important;
+      font-weight: 600 !important;
+      font-size: 14px !important;
+      box-shadow: 0 4px 12px rgba(245,158,11,0.3);
+      transition: transform 0.2s, box-shadow 0.2s !important;
+    }
+
+    .btn-nav:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(245,158,11,0.4) !important;
+      background: linear-gradient(135deg, var(--yellow), var(--orange)) !important;
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gray-700);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding-top: 68px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #FFFBF0 0%, #FFF9F5 40%, #F0FDF4 100%);
+    }
+
+    .hero-bg-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .blob-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #FEF3C7, #FDE68A);
+      top: -100px;
+      right: -150px;
+    }
+
+    .blob-2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #D1FAE5, #A7F3D0);
+      bottom: 100px;
+      left: -100px;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--yellow-light);
+      border: 1px solid #FDE68A;
+      color: var(--yellow-dark);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge i {
+      font-size: 12px;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -2px;
+      color: var(--gray-900);
+      margin-bottom: 22px;
+    }
+
+    .hero-title .highlight {
+      background: linear-gradient(135deg, var(--yellow-dark), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--gray-500);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 480px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(245,158,11,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: -0.2px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(245,158,11,0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: var(--gray-700);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      border: 1.5px solid var(--gray-200);
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gray-300);
+      box-shadow: var(--shadow);
+      transform: translateY(-1px);
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .trust-item i {
+      color: var(--green);
+      font-size: 14px;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-img-wrap {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.2));
+    }
+
+    .hero-float-card {
+      position: absolute;
+      background: white;
+      border-radius: 16px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .float-card-1 {
+      bottom: -18px;
+      left: -24px;
+    }
+
+    .float-card-2 {
+      top: -16px;
+      right: -20px;
+    }
+
+    .float-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .float-icon.yellow { background: var(--yellow-light); color: var(--yellow-dark); }
+    .float-icon.green  { background: var(--green-light);  color: var(--green-dark);  }
+
+    .float-label {
+      font-size: 11px;
+      color: var(--gray-400);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .float-value {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gray-900);
+      line-height: 1.2;
+    }
+
+    /* ─── STATS DASHBOARD ─── */
+    .stats {
+      background: var(--white);
+      padding: 80px 24px;
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--yellow-dark);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      color: var(--gray-900);
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--gray-500);
+      max-width: 520px;
+      line-height: 1.65;
+      margin-bottom: 52px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-card-bg {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      opacity: 0.08;
+      top: -20px;
+      right: -20px;
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .stat-icon.yellow { background: var(--yellow-light); color: var(--yellow-dark); }
+    .stat-icon.orange { background: #FFF7ED; color: var(--orange); }
+    .stat-icon.green  { background: var(--green-light);  color: var(--green-dark);  }
+    .stat-icon.blue   { background: #EFF6FF; color: #3B82F6; }
+
+    .stat-value {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--gray-900);
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .stat-unit {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gray-400);
+      letter-spacing: 0;
+    }
+
+    .stat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 100px;
+      margin-top: 10px;
+    }
+
+    .stat-badge.green { background: var(--green-light); color: var(--green-dark); }
+    .stat-badge.yellow { background: var(--yellow-light); color: var(--yellow-dark); }
+
+    /* ─── HOW IT WORKS ─── */
+    .how {
+      background: var(--gray-50);
+      padding: 80px 24px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: calc(16.66% + 20px);
+      right: calc(16.66% + 20px);
+      height: 2px;
+      background: linear-gradient(to right, var(--yellow), var(--orange));
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .step-card {
+      background: white;
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .step-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .step-number {
+      position: absolute;
+      top: -16px;
+      left: 28px;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(245,158,11,0.4);
+    }
+
+    .step-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 22px;
+    }
+
+    .step-icon.yellow { background: var(--yellow-light); color: var(--yellow-dark); }
+    .step-icon.orange { background: #FFF7ED; color: var(--orange); }
+    .step-icon.green  { background: var(--green-light);  color: var(--green-dark);  }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--gray-500);
+      line-height: 1.7;
+    }
+
+    /* ─── PLANS ─── */
+    .plans {
+      background: var(--white);
+      padding: 80px 24px;
+    }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .plan-card {
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-xl);
+      padding: 36px 30px;
+      background: white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .plan-card.popular {
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 4px rgba(245,158,11,0.08), var(--shadow-md);
+      transform: scale(1.02);
+    }
+
+    .plan-card.popular:hover {
+      transform: scale(1.02) translateY(-6px);
+      box-shadow: 0 0 0 4px rgba(245,158,11,0.12), var(--shadow-xl);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 16px;
+      border-radius: 100px;
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(245,158,11,0.35);
+    }
+
+    .plan-header {
+      margin-bottom: 24px;
+    }
+
+    .plan-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .plan-icon.yellow { background: var(--yellow-light); color: var(--yellow-dark); }
+    .plan-icon.orange { background: #FFF7ED; color: var(--orange); }
+    .plan-icon.green  { background: var(--green-light);  color: var(--green-dark);  }
+
+    .plan-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 4px;
+      letter-spacing: -0.3px;
+    }
+
+    .plan-tagline {
+      font-size: 13px;
+      color: var(--gray-400);
+      font-weight: 500;
+    }
+
+    .plan-price-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+
+    .plan-price {
+      font-size: 46px;
+      font-weight: 900;
+      color: var(--gray-900);
+      letter-spacing: -2.5px;
+      line-height: 1;
+    }
+
+    .plan-price-sym {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gray-600);
+      margin-bottom: 5px;
+    }
+
+    .plan-price-period {
+      font-size: 14px;
+      color: var(--gray-400);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .plan-specs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .spec-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--gray-100);
+      color: var(--gray-600);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
+
+    .spec-pill i {
+      font-size: 11px;
+      color: var(--yellow-dark);
+    }
+
+    .plan-divider {
+      height: 1px;
+      background: var(--gray-100);
+      margin-bottom: 22px;
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 28px;
+      flex: 1;
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--gray-600);
+      font-weight: 450;
+    }
+
+    .plan-features li i {
+      color: var(--green);
+      font-size: 14px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .plan-features li.dim {
+      color: var(--gray-400);
+    }
+
+    .plan-features li.dim i {
+      color: var(--gray-300);
+    }
+
+    .btn-plan {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: -0.1px;
+      width: 100%;
+    }
+
+    .btn-plan.outline {
+      background: white;
+      color: var(--gray-700);
+      border: 1.5px solid var(--gray-200);
+    }
+
+    .btn-plan.outline:hover {
+      border-color: var(--yellow);
+      color: var(--yellow-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-plan.filled {
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: white;
+      box-shadow: 0 6px 20px rgba(245,158,11,0.35);
+    }
+
+    .btn-plan.filled:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(245,158,11,0.45);
+    }
+
+    /* ─── GALLERY / PROOF ─── */
+    .gallery {
+      background: var(--gray-50);
+      padding: 80px 24px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 240px 240px;
+      gap: 16px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-item:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    /* ─── TESTIMONIALS / CTA BANNER ─── */
+    .cta-banner {
+      background: linear-gradient(135deg, #1A1A2E 0%, #16213E 50%, #0F3460 100%);
+      padding: 80px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner-bg {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .cta-blob-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--yellow);
+      top: -100px;
+      left: 10%;
+    }
+
+    .cta-blob-2 {
+      width: 300px;
+      height: 300px;
+      background: var(--green);
+      bottom: -50px;
+      right: 15%;
+    }
+
+    .cta-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.3);
+      color: #FCD34D;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .cta-title {
+      font-size: clamp(30px, 4.5vw, 50px);
+      font-weight: 900;
+      color: white;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .cta-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 30px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-cta.primary {
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: white;
+      box-shadow: 0 8px 24px rgba(245,158,11,0.4);
+    }
+
+    .btn-cta.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(245,158,11,0.5);
+    }
+
+    .btn-cta.ghost {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1.5px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-cta.ghost:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--gray-900);
+      color: var(--gray-400);
+      padding: 60px 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--gray-800);
+    }
+
+    .footer-brand .nav-logo {
+      margin-bottom: 14px;
+      display: inline-flex;
+    }
+
+    .footer-brand .nav-logo-text {
+      color: white;
+    }
+
+    .footer-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray-500);
+      margin-bottom: 20px;
+      max-width: 260px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: var(--gray-800);
+      color: var(--gray-400);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .social-btn:hover {
+      background: var(--yellow-dark);
+      color: white;
+    }
+
+    .footer-col-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--gray-300);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: var(--gray-500);
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--yellow);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-tagline i {
+      color: var(--yellow-dark);
+    }
+
+    /* ─── MODAL ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: 48px 44px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.25);
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+      opacity: 0;
+      position: relative;
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--gray-100);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-500);
+      font-size: 14px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .modal-close:hover {
+      background: var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    .modal-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--yellow-light), #FDE68A);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 36px;
+    }
+
+    .modal-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--gray-900);
+      letter-spacing: -0.8px;
+      margin-bottom: 12px;
+    }
+
+    .modal-sub {
+      font-size: 15px;
+      color: var(--gray-500);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    .modal-plan-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--yellow-light);
+      color: var(--yellow-dark);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      border: 1px solid #FDE68A;
+    }
+
+    .modal-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+      background: var(--gray-50);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 28px;
+    }
+
+    .modal-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--gray-600);
+    }
+
+    .modal-step i {
+      color: var(--green);
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .btn-modal-close {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(245,158,11,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-modal-close:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(245,158,11,0.45);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .nav-hamburger {
+        display: flex;
+      }
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 52px 24px 48px;
+      }
+      .hero-visual {
+        order: -1;
+      }
+      .hero-img-wrap img {
+        height: 280px;
+      }
+      .float-card-1 { left: 0; bottom: -14px; }
+      .float-card-2 { right: 0; top: -12px; }
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .steps-grid::before { display: none; }
+      .plans-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+      .plan-card.popular {
+        transform: scale(1);
+      }
+      .plan-card.popular:hover {
+        transform: translateY(-6px);
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item:first-child {
+        grid-row: auto;
+      }
+      .gallery-item {
+        height: 220px;
+      }
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .modal {
+        padding: 36px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon"><i class="fa-solid fa-sun"></i></div>
+      <span class="nav-logo-text">Solar<span>Rent</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#stats">Dashboard</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#plans">Plans</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#plans" class="btn-nav">Get Started</a></li>
+    </ul>
+    <div class="nav-hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-blob blob-1"></div>
+  <div class="hero-bg-blob blob-2"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <i class="fa-solid fa-bolt"></i>
+        Zero upfront cost · Cancel anytime
+      </div>
+      <h1 class="hero-title">
+        Power Your Home with<br/>
+        <span class="highlight">Clean Solar</span><br/>
+        Energy
+      </h1>
+      <p class="hero-sub">
+        Rent premium solar panels with no installation fees, no long-term lock-in, and start saving from day one. Clean energy made effortless.
+      </p>
+      <div class="hero-actions">
+        <a href="#plans" class="btn-primary">
+          <i class="fa-solid fa-solar-panel"></i>
+          View Plans
+        </a>
+        <a href="#how" class="btn-secondary">
+          <i class="fa-solid fa-circle-play"></i>
+          How It Works
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <i class="fa-solid fa-circle-check"></i>
+          Free installation
+        </div>
+        <div class="trust-item">
+          <i class="fa-solid fa-circle-check"></i>
+          24/7 monitoring
+        </div>
+        <div class="trust-item">
+          <i class="fa-solid fa-circle-check"></i>
+          Fully insured
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80&auto=format&fit=crop"
+          alt="Solar panels on modern rooftop"
+          loading="eager"
+        />
+        <div class="hero-img-overlay"></div>
+      </div>
+      <div class="hero-float-card float-card-1">
+        <div class="float-icon green"><i class="fa-solid fa-leaf"></i></div>
+        <div>
+          <div class="float-label">CO₂ Offset Today</div>
+          <div class="float-value">0 kg</div>
+        </div>
+      </div>
+      <div class="hero-float-card float-card-2">
+        <div class="float-icon yellow"><i class="fa-solid fa-sun"></i></div>
+        <div>
+          <div class="float-label">Live Output</div>
+          <div class="float-value">0 kWh</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS DASHBOARD -->
+<section class="stats" id="stats">
+  <div class="section-inner">
+    <div class="section-tag"><i class="fa-solid fa-chart-line"></i> Live Dashboard</div>
+    <h2 class="section-title">Your Impact at a Glance</h2>
+    <p class="section-sub">Real-time metrics across our entire network of rented solar installations. All panels. All homes. One planet.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-card-bg" style="background: var(--yellow);"></div>
+        <div class="stat-icon yellow"><i class="fa-solid fa-bolt"></i></div>
+        <div class="stat-value">0 <span class="stat-unit">kWh</span></div>
+        <div class="stat-label">Total Energy Produced</div>
+        <div class="stat-badge yellow"><i class="fa-solid fa-arrow-trend-up"></i> Growing daily</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-bg" style="background: var(--orange);"></div>
+        <div class="stat-icon orange"><i class="fa-solid fa-solar-panel"></i></div>
+        <div class="stat-value">0 <span class="stat-unit">panels</span></div>
+        <div class="stat-label">Panels Currently Rented</div>
+        <div class="stat-badge yellow"><i class="fa-solid fa-clock"></i> Be the first</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-bg" style="background: var(--green);"></div>
+        <div class="stat-icon green"><i class="fa-solid fa-piggy-bank"></i></div>
+        <div class="stat-value">$0 <span class="stat-unit">saved</span></div>
+        <div class="stat-label">Total Customer Savings</div>
+        <div class="stat-badge green"><i class="fa-solid fa-circle-check"></i> Savings start day 1</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-bg" style="background: #3B82F6;"></div>
+        <div class="stat-icon blue"><i class="fa-solid fa-seedling"></i></div>
+        <div class="stat-value">0 <span class="stat-unit">kg</span></div>
+        <div class="stat-label">CO₂ Emissions Offset</div>
+        <div class="stat-badge green"><i class="fa-solid fa-leaf"></i> Carbon neutral</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-inner">
+    <div class="section-tag"><i class="fa-solid fa-list-check"></i> Simple Process</div>
+    <h2 class="section-title">Up and Running in 3 Steps</h2>
+    <p class="section-sub">From sign-up to solar power in as little as 5 business days. No contractors. No paperwork hassle. We handle everything.</p>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-icon yellow"><i class="fa-solid fa-hand-pointer"></i></div>
+        <h3 class="step-title">Choose Your Plan</h3>
+        <p class="step-desc">Browse our flexible rental plans and pick the panel count that matches your energy needs and budget. No commitment required.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-icon orange"><i class="fa-solid fa-helmet-safety"></i></div>
+        <h3 class="step-title">We Install Everything</h3>
+        <p class="step-desc">Our certified engineers handle the full installation, including roof assessment, panel mounting, wiring, and grid connection — all free.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-icon green"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+        <h3 class="step-title">You Save Instantly</h3>
+        <p class="step-desc">Watch your electricity bills drop from the very first sunny day. Track your output, savings, and CO₂ offset in your real-time dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="plans" id="plans">
+  <div class="section-inner">
+    <div class="section-tag"><i class="fa-solid fa-tags"></i> Rental Plans</div>
+    <h2 class="section-title">Find the Right Plan for Your Home</h2>
+    <p class="section-sub">All plans include free installation, 24/7 monitoring, full insurance coverage, and a dedicated support team.</p>
+
+    <div class="plans-grid">
+
+      <!-- Starter -->
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-icon yellow"><i class="fa-solid fa-sun"></i></div>
+          <div class="plan-name">Starter</div>
+          <div class="plan-tagline">Perfect for apartments & small homes</div>
+        </div>
+        <div class="plan-price-row">
+          <span class="plan-price-sym">$</span>
+          <span class="plan-price">29</span>
+          <span class="plan-price-period">/month</span>
+        </div>
+        <div class="plan-specs">
+          <span class="spec-pill"><i class="fa-solid fa-solar-panel"></i> 2 Panels</span>
+          <span class="spec-pill"><i class="fa-solid fa-bolt"></i> 500W</span>
+          <span class="spec-pill"><i class="fa-solid fa-battery-three-quarters"></i> ~60 kWh/mo</span>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><i class="fa-solid fa-circle-check"></i> 2 premium monocrystalline panels</li>
+          <li><i class="fa-solid fa-circle-check"></i> 500W peak system output</li>
+          <li><i class="fa-solid fa-circle-check"></i> ~60 kWh estimated monthly output</li>
+          <li><i class="fa-solid fa-circle-check"></i> Free professional installation</li>
+          <li><i class="fa-solid fa-circle-check"></i> Basic monitoring app access</li>
+          <li><i class="fa-solid fa-circle-check"></i> Email customer support</li>
+          <li class="dim"><i class="fa-solid fa-circle-xmark"></i> Battery storage add-on</li>
+          <li class="dim"><i class="fa-solid fa-circle-xmark"></i> Priority technician visits</li>
+        </ul>
+        <button class="btn-plan outline" onclick="openModal('Starter — $29/month')">
+          <i class="fa-solid fa-solar-panel"></i> Rent Now
+        </button>
+      </div>
+
+      <!-- Standard (Popular) -->
+      <div class="plan-card popular">
+        <div class="popular-badge"><i class="fa-solid fa-star"></i> Most Popular</div>
+        <div class="plan-header">
+          <div class="plan-icon orange"><i class="fa-solid fa-fire"></i></div>
+          <div class="plan-name">Standard</div>
+          <div class="plan-tagline">The sweet spot for most households</div>
+        </div>
+        <div class="plan-price-row">
+          <span class="plan-price-sym">$</span>
+          <span class="plan-price">69</span>
+          <span class="plan-price-period">/month</span>
+        </div>
+        <div class="plan-specs">
+          <span class="spec-pill"><i class="fa-solid fa-solar-panel"></i> 6 Panels</span>
+          <span class="spec-pill"><i class="fa-solid fa-bolt"></i> 1500W</span>
+          <span class="spec-pill"><i class="fa-solid fa-battery-three-quarters"></i> ~185 kWh/mo</span>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><i class="fa-solid fa-circle-check"></i> 6 premium monocrystalline panels</li>
+          <li><i class="fa-solid fa-circle-check"></i> 1500W peak system output</li>
+          <li><i class="fa-solid fa-circle-check"></i> ~185 kWh estimated monthly output</li>
+          <li><i class="fa-solid fa-circle-check"></i> Free professional installation</li>
+          <li><i class="fa-solid fa-circle-check"></i> Advanced monitoring dashboard</li>
+          <li><i class="fa-solid fa-circle-check"></i> Priority phone & email support</li>
+          <li><i class="fa-solid fa-circle-check"></i> Optional battery storage add-on</li>
+          <li class="dim"><i class="fa-solid fa-circle-xmark"></i> Dedicated account manager</li>
+        </ul>
+        <button class="btn-plan filled" onclick="openModal('Standard — $69/month')">
+          <i class="fa-solid fa-solar-panel"></i> Rent Now
+        </button>
+      </div>
+
+      <!-- Premium -->
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-icon green"><i class="fa-solid fa-leaf"></i></div>
+          <div class="plan-name">Premium</div>
+          <div class="plan-tagline">Maximum output for large homes</div>
+        </div>
+        <div class="plan-price-row">
+          <span class="plan-price-sym">$</span>
+          <span class="plan-price">119</span>
+          <span class="plan-price-period">/month</span>
+        </div>
+        <div class="plan-specs">
+          <span class="spec-pill"><i class="fa-solid fa-solar-panel"></i> 12 Panels</span>
+          <span class="spec-pill"><i class="fa-solid fa-bolt"></i> 3000W</span>
+          <span class="spec-pill"><i class="fa-solid fa-battery-three-quarters"></i> ~370 kWh/mo</span>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><i class="fa-solid fa-circle-check"></i> 12 premium monocrystalline panels</li>
+          <li><i class="fa-solid fa-circle-check"></i> 3000W peak system output</li>
+          <li><i class="fa-solid fa-circle-check"></i> ~370 kWh estimated monthly output</li>
+          <li><i class="fa-solid fa-circle-check"></i> Free professional installation</li>
+          <li><i class="fa-solid fa-circle-check"></i> Full real-time monitoring suite</li>
+          <li><i class="fa-solid fa-circle-check"></i> 24/7 priority support line</li>
+          <li><i class="fa-solid fa-circle-check"></i> Battery storage included</li>
+          <li><i class="fa-solid fa-circle-check"></i> Dedicated account manager</li>
+        </ul>
+        <button class="btn-plan outline" onclick="openModal('Premium — $119/month')">
+          <i class="fa-solid fa-solar-panel"></i> Rent Now
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-inner">
+    <div class="section-tag"><i class="fa-solid fa-images"></i> Our Installations</div>
+    <h2 class="section-title">Solar Energy, Beautifully Installed</h2>
+    <p class="section-sub">Every installation is engineered for maximum efficiency and designed to complement your home's aesthetic.</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=900&q=80&auto=format&fit=crop"
+          alt="Solar panels on residential rooftop"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=600&q=80&auto=format&fit=crop"
+          alt="Close-up solar panel array"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80&auto=format&fit=crop"
+          alt="Modern home with solar panels"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1548337138-e87d889cc369?w=600&q=80&auto=format&fit=crop"
+          alt="Solar panel installation team"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80&auto=format&fit=crop"
+          alt="Wind and solar energy field"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-bg cta-blob-1"></div>
+  <div class="cta-banner-bg cta-blob-2"></div>
+  <div class="cta-inner">
+    <div class="cta-badge"><i class="fa-solid fa-bolt"></i> Limited spots available this month</div>
+    <h2 class="cta-title">Start Saving on Energy Bills Today</h2>
+    <p class="cta-sub">Join thousands of homeowners who are already reducing their carbon footprint and cutting electricity costs with SolarRent.</p>
+    <div class="cta-actions">
+      <button class="btn-cta primary" onclick="openModal('Standard — $69/month')">
+        <i class="fa-solid fa-solar-panel"></i>
+        Get Started Free
+      </button>
+      <a href="#plans" class="btn-cta ghost">
+        <i class="fa-solid fa-list"></i>
+        Compare Plans
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-icon"><i class="fa-solid fa-sun"></i></div>
+          <span class="nav-logo-text">Solar<span>Rent</span></span>
+        </a>
+        <p class="footer-desc">Clean, affordable solar energy for every home. No ownership required — just sunshine and savings.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Product</div>
+        <ul class="footer-links">
+          <li><a href="#plans">Plans & Pricing</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#stats">Dashboard</a></li>
+          <li><a href="#">Monitoring App</a></li>
+          <li><a href="#">Battery Storage</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Partners</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Support</div>
+        <ul class="footer-links">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Installation FAQ</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 SolarRent Inc. All rights reserved.</div>
+      <div class="footer-tagline">
+        <i class="fa-solid fa-sun"></i>
+        Powered by the sun. Built for the future.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-icon">&#x2600;&#xFE0F;</div>
+    <h2 class="modal-title">You're Almost Solar!</h2>
+    <p class="modal-sub">Thank you for your interest. A solar advisor will contact you within 24 hours to confirm your installation details.</p>
+    <div class="modal-plan-chip">
+      <i class="fa-solid fa-solar-panel"></i>
+      <span id="modalPlanName">Starter — $29/month</span>
+    </div>
+    <div class="modal-steps">
+      <div class="modal-step"><i class="fa-solid fa-circle-check"></i> Advisor call within 24 hours</div>
+      <div class="modal-step"><i class="fa-solid fa-circle-check"></i> Free roof assessment scheduled</div>
+      <div class="modal-step"><i class="fa-solid fa-circle-check"></i> Installation within 5 business days</div>
+      <div class="modal-step"><i class="fa-solid fa-circle-check"></i> Start saving from day one</div>
+    </div>
+    <button class="btn-modal-close" onclick="closeModal()">
+      <i class="fa-solid fa-check"></i> Got It — I'll Expect Your Call
+    </button>
+  </div>
+</div>
+
+<script>
+  // Modal logic
+  function openModal(planName) {
+    document.getElementById('modalPlanName').textContent = planName;
+    const overlay = document.getElementById('modalOverlay');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const overlay = document.getElementById('modalOverlay');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) {
+      closeModal();
+    }
+  }
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Mobile hamburger (simple toggle)
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    if (links.style.display === 'flex') {
+      links.style.display = 'none';
+    } else {
+      links.style.cssText = `
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 16px 24px 24px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        border-top: 1px solid #F3F4F6;
+        gap: 4px;
+        z-index: 999;
+      `;
+      // Make nav links take full width on mobile
+      const navLinks = links.querySelectorAll('a');
+      navLinks.forEach(a => {
+        a.style.display = 'block';
+        a.style.padding = '10px 14px';
+      });
+    }
+  }
+
+  // Smooth navbar shadow on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+  });
+
+  // Animate stat values on scroll (they stay at 0 but with a nice entrance animation)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.15 });
+
+  // Staggered entrance for stat cards
+  document.querySelectorAll('.stat-card, .step-card, .plan-card, .gallery-item').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = `opacity 0.5s ease ${i * 0.08}s, transform 0.5s ease ${i * 0.08}s, box-shadow 0.25s, border-color 0.2s`;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
