@@ -527,6 +527,80 @@
       margin-top: 10px;
     }
 
+    .energy-progress-wrap {
+      max-width: 1200px;
+      margin: 32px auto 0;
+      padding: 24px 32px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .energy-progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .energy-progress-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-700);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .energy-progress-label i {
+      color: var(--yellow-dark);
+    }
+
+    .energy-progress-values {
+      font-size: 13px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .energy-progress-values span {
+      font-weight: 700;
+      color: var(--gray-800);
+    }
+
+    .progress-track {
+      height: 14px;
+      background: var(--gray-200);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--yellow), var(--orange));
+      transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 100px;
+    }
+
+    .energy-progress-sub {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--gray-400);
+    }
+
     .stat-badge.green { background: var(--green-light); color: var(--green-dark); }
     .stat-badge.yellow { background: var(--yellow-light); color: var(--yellow-dark); }
 
@@ -1461,6 +1535,23 @@
         <div class="stat-badge" style="background: #EDE9FE; color: #7C3AED;"><i class="fa-solid fa-air-freshener"></i> Air purified</div>
       </div>
     </div>
+
+    <div class="energy-progress-wrap">
+      <div class="energy-progress-header">
+        <div class="energy-progress-label">
+          <i class="fa-solid fa-bolt"></i>
+          Annual Energy Production Goal
+        </div>
+        <div class="energy-progress-values">
+          <span>0</span> / 250 kWh/m/year
+        </div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="energyProgressBar"></div>
+      </div>
+      <div class="energy-progress-sub">0% of 250 kWh/m/year target reached — rent panels to start generating energy</div>
+    </div>
+
   </div>
 </section>
 
