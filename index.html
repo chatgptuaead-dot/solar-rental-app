@@ -608,7 +608,7 @@
     }
 
     .roof-scene {
-      max-width: 820px;
+      max-width: 1160px;
       margin: 48px auto 0;
       position: relative;
     }
@@ -617,16 +617,16 @@
       position: relative;
       background: #D1C4A8;
       border-radius: 0 0 16px 16px;
-      padding: 28px 28px 36px;
+      padding: 16px 16px 28px;
       box-shadow: 0 12px 40px rgba(0,0,0,0.13);
     }
 
     .roof-triangle {
       width: 0;
       height: 0;
-      border-left: 430px solid transparent;
-      border-right: 430px solid transparent;
-      border-bottom: 100px solid #B8A88A;
+      border-left: 590px solid transparent;
+      border-right: 590px solid transparent;
+      border-bottom: 80px solid #B8A88A;
       margin: 0 auto;
       position: relative;
       filter: drop-shadow(0 -6px 12px rgba(0,0,0,0.1));
@@ -645,15 +645,15 @@
 
     .roof-grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
+      grid-template-columns: repeat(20, 1fr);
+      gap: 5px;
       margin-top: 0;
     }
 
     .roof-panel-slot {
       aspect-ratio: 1.4 / 1;
-      border: 2px dashed var(--gray-300);
-      border-radius: 8px;
+      border: 1px dashed var(--gray-300);
+      border-radius: 4px;
       background: rgba(255,255,255,0.4);
       display: flex;
       flex-direction: column;
@@ -683,31 +683,31 @@
     }
 
     .roof-panel-slot .slot-icon {
-      font-size: 18px;
+      font-size: 10px;
       color: var(--gray-300);
     }
 
     .roof-panel-slot.occupied .slot-icon {
-      font-size: 20px;
+      font-size: 11px;
       color: var(--yellow-dark);
     }
 
     .roof-panel-slot .slot-name {
-      font-size: 9px;
+      font-size: 6px;
       font-weight: 700;
       color: var(--yellow-dark);
       text-align: center;
-      margin-top: 4px;
+      margin-top: 2px;
       line-height: 1.2;
       padding: 0 4px;
       word-break: break-word;
     }
 
     .roof-panel-slot .slot-plan {
-      font-size: 7px;
+      font-size: 5px;
       color: var(--orange);
       font-weight: 600;
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
     .roof-empty-state {
@@ -2103,7 +2103,7 @@
       <div class="legend-item"><div class="legend-dot empty"></div> Available slot</div>
       <div class="legend-item"><div class="legend-dot filled"></div> Rented panel</div>
     </div>
-    <div class="roof-counter" id="roofCounter"><strong>0</strong> of 24 panels rented</div>
+    <div class="roof-counter" id="roofCounter"><strong>0</strong> of 200 panels rented</div>
   </div>
 </section>
 
@@ -2267,7 +2267,7 @@
 
 <script>
   // ─── ROOF MAP ───
-  const TOTAL_SLOTS = 24;
+  const TOTAL_SLOTS = 200;
   let rentedPanels = JSON.parse(localStorage.getItem('solarRentals') || '[]');
 
   function buildRoofGrid() {
