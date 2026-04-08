@@ -601,6 +601,221 @@
       color: var(--gray-400);
     }
 
+    /* ─── ROOF MAP ─── */
+    .roof-map-section {
+      padding: 100px 24px;
+      background: var(--gray-50);
+    }
+
+    .roof-scene {
+      max-width: 820px;
+      margin: 48px auto 0;
+      position: relative;
+    }
+
+    .roof-building {
+      position: relative;
+      background: #D1C4A8;
+      border-radius: 0 0 16px 16px;
+      padding: 28px 28px 36px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.13);
+    }
+
+    .roof-triangle {
+      width: 0;
+      height: 0;
+      border-left: 430px solid transparent;
+      border-right: 430px solid transparent;
+      border-bottom: 100px solid #B8A88A;
+      margin: 0 auto;
+      position: relative;
+      filter: drop-shadow(0 -6px 12px rgba(0,0,0,0.1));
+    }
+
+    .roof-ridge {
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 64px;
+      height: 6px;
+      background: #8B7355;
+      border-radius: 3px;
+    }
+
+    .roof-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-top: 0;
+    }
+
+    .roof-panel-slot {
+      aspect-ratio: 1.4 / 1;
+      border: 2px dashed var(--gray-300);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+      cursor: default;
+      overflow: hidden;
+    }
+
+    .roof-panel-slot.empty-slot {
+      opacity: 0.5;
+    }
+
+    .roof-panel-slot.occupied {
+      border: 2px solid var(--yellow-dark);
+      background: linear-gradient(135deg, #FEF3C7, #FFF7ED);
+      box-shadow: 0 4px 12px rgba(245,158,11,0.2);
+      cursor: default;
+      animation: panelPop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    @keyframes panelPop {
+      from { transform: scale(0.7); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+
+    .roof-panel-slot .slot-icon {
+      font-size: 18px;
+      color: var(--gray-300);
+    }
+
+    .roof-panel-slot.occupied .slot-icon {
+      font-size: 20px;
+      color: var(--yellow-dark);
+    }
+
+    .roof-panel-slot .slot-name {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--yellow-dark);
+      text-align: center;
+      margin-top: 4px;
+      line-height: 1.2;
+      padding: 0 4px;
+      word-break: break-word;
+    }
+
+    .roof-panel-slot .slot-plan {
+      font-size: 7px;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .roof-empty-state {
+      text-align: center;
+      padding: 20px 0 4px;
+      color: var(--gray-400);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .roof-empty-state i {
+      color: var(--gray-300);
+    }
+
+    .roof-legend {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .legend-dot {
+      width: 16px;
+      height: 10px;
+      border-radius: 3px;
+    }
+
+    .legend-dot.empty {
+      border: 2px dashed var(--gray-300);
+      background: rgba(255,255,255,0.4);
+    }
+
+    .legend-dot.filled {
+      background: linear-gradient(135deg, #FEF3C7, #FFF7ED);
+      border: 2px solid var(--yellow-dark);
+    }
+
+    .roof-counter {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--gray-500);
+    }
+
+    .roof-counter strong {
+      color: var(--gray-800);
+    }
+
+    /* Modal name input */
+    .modal-name-field {
+      width: 100%;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+
+    .modal-name-field label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-600);
+    }
+
+    .modal-name-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      color: var(--gray-800);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--gray-50);
+    }
+
+    .modal-name-input:focus {
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+      background: white;
+    }
+
+    .modal-name-input.error {
+      border-color: #EF4444;
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+    }
+
+    .modal-name-error {
+      font-size: 12px;
+      color: #EF4444;
+      display: none;
+    }
+
     .stat-badge.green { background: var(--green-light); color: var(--green-dark); }
     .stat-badge.yellow { background: var(--yellow-light); color: var(--yellow-dark); }
 
@@ -1409,6 +1624,7 @@
       <li><a href="#how">How It Works</a></li>
       <li><a href="#plans">Plans</a></li>
       <li><a href="#air-purifiers">Air Purifiers</a></li>
+      <li><a href="#roof-map">Roof Map</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#plans" class="btn-nav">Get Started</a></li>
     </ul>
@@ -1811,6 +2027,36 @@
   </div>
 </section>
 
+<!-- ROOF MAP -->
+<section class="roof-map-section" id="roof-map">
+  <div class="section-inner">
+    <div class="section-tag"><i class="fa-solid fa-house-chimney"></i> Live Roof Map</div>
+    <h2 class="section-title">Our Solar Rooftop</h2>
+    <p class="section-sub">Every panel slot below belongs to a real customer. Rent a panel and your name goes on the roof — be the first!</p>
+
+    <div class="roof-scene">
+      <!-- Roof peak -->
+      <div class="roof-triangle"><div class="roof-ridge"></div></div>
+      <!-- Roof body with panel grid -->
+      <div class="roof-building">
+        <div class="roof-grid" id="roofGrid">
+          <!-- 24 slots (4 rows × 6 cols) generated by JS -->
+        </div>
+        <div class="roof-empty-state" id="roofEmptyState">
+          <i class="fa-solid fa-sun fa-beat-fade"></i>
+          No panels rented yet — be the first to claim a spot!
+        </div>
+      </div>
+    </div>
+
+    <div class="roof-legend">
+      <div class="legend-item"><div class="legend-dot empty"></div> Available slot</div>
+      <div class="legend-item"><div class="legend-dot filled"></div> Rented panel</div>
+    </div>
+    <div class="roof-counter" id="roofCounter"><strong>0</strong> of 24 panels rented</div>
+  </div>
+</section>
+
 <!-- GALLERY -->
 <section class="gallery" id="gallery">
   <div class="section-inner">
@@ -1947,30 +2193,71 @@
     <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
     <div class="modal-icon">&#x2600;&#xFE0F;</div>
     <h2 class="modal-title">You're Almost Solar!</h2>
-    <p class="modal-sub">Thank you for your interest. A solar advisor will contact you within 24 hours to confirm your installation details.</p>
+    <p class="modal-sub">Enter your name below — we'll place it on our rooftop map when your panel is confirmed.</p>
     <div class="modal-plan-chip">
       <i class="fa-solid fa-solar-panel"></i>
       <span id="modalPlanName">Starter — $29/month</span>
     </div>
+    <div class="modal-name-field">
+      <label for="modalNameInput">Your full name</label>
+      <input type="text" id="modalNameInput" class="modal-name-input" placeholder="e.g. Alex Johnson" maxlength="24" />
+      <span class="modal-name-error" id="modalNameError">Please enter your name to continue.</span>
+    </div>
     <div class="modal-steps">
+      <div class="modal-step"><i class="fa-solid fa-circle-check"></i> Your name added to the roof map</div>
       <div class="modal-step"><i class="fa-solid fa-circle-check"></i> Advisor call within 24 hours</div>
-      <div class="modal-step"><i class="fa-solid fa-circle-check"></i> Free roof assessment scheduled</div>
       <div class="modal-step"><i class="fa-solid fa-circle-check"></i> Installation within 5 business days</div>
       <div class="modal-step"><i class="fa-solid fa-circle-check"></i> Start saving from day one</div>
     </div>
-    <button class="btn-modal-close" onclick="closeModal()">
-      <i class="fa-solid fa-check"></i> Got It — I'll Expect Your Call
+    <button class="btn-modal-close" onclick="submitRental()">
+      <i class="fa-solid fa-house-chimney"></i> Claim My Roof Spot
     </button>
   </div>
 </div>
 
 <script>
-  // Modal logic
+  // ─── ROOF MAP ───
+  const TOTAL_SLOTS = 24;
+  let rentedPanels = JSON.parse(localStorage.getItem('solarRentals') || '[]');
+
+  function buildRoofGrid() {
+    const grid = document.getElementById('roofGrid');
+    grid.innerHTML = '';
+    for (let i = 0; i < TOTAL_SLOTS; i++) {
+      const slot = document.createElement('div');
+      const rental = rentedPanels[i];
+      if (rental) {
+        slot.className = 'roof-panel-slot occupied';
+        slot.innerHTML = `
+          <i class="fa-solid fa-solar-panel slot-icon"></i>
+          <div class="slot-name">${rental.name}</div>
+          <div class="slot-plan">${rental.plan.split('—')[0].trim()}</div>`;
+      } else {
+        slot.className = 'roof-panel-slot empty-slot';
+        slot.innerHTML = `<i class="fa-regular fa-square slot-icon"></i>`;
+      }
+      grid.appendChild(slot);
+    }
+    const count = rentedPanels.length;
+    document.getElementById('roofCounter').innerHTML = `<strong>${count}</strong> of ${TOTAL_SLOTS} panels rented`;
+    document.getElementById('roofEmptyState').style.display = count === 0 ? 'flex' : 'none';
+  }
+
+  buildRoofGrid();
+
+  // ─── MODAL ───
+  let _currentPlan = '';
+
   function openModal(planName) {
+    _currentPlan = planName;
     document.getElementById('modalPlanName').textContent = planName;
+    document.getElementById('modalNameInput').value = '';
+    document.getElementById('modalNameInput').classList.remove('error');
+    document.getElementById('modalNameError').style.display = 'none';
     const overlay = document.getElementById('modalOverlay');
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('modalNameInput').focus(), 300);
   }
 
   function closeModal() {
@@ -1979,15 +2266,42 @@
     document.body.style.overflow = '';
   }
 
+  function submitRental() {
+    const nameInput = document.getElementById('modalNameInput');
+    const name = nameInput.value.trim();
+    if (!name) {
+      nameInput.classList.add('error');
+      document.getElementById('modalNameError').style.display = 'block';
+      nameInput.focus();
+      return;
+    }
+    if (rentedPanels.length >= TOTAL_SLOTS) {
+      alert('All roof slots are taken! Contact us to expand capacity.');
+      closeModal();
+      return;
+    }
+    rentedPanels.push({ name, plan: _currentPlan, date: new Date().toISOString() });
+    localStorage.setItem('solarRentals', JSON.stringify(rentedPanels));
+    closeModal();
+    buildRoofGrid();
+    // Scroll to roof map so they see their name
+    setTimeout(() => {
+      document.getElementById('roof-map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 400);
+  }
+
   function handleOverlayClick(e) {
     if (e.target === document.getElementById('modalOverlay')) {
       closeModal();
     }
   }
 
-  // Close modal on Escape key
+  // Close modal on Escape key, submit on Enter in name field
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModal();
+  });
+  document.getElementById('modalNameInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') submitRental();
   });
 
   // Mobile hamburger (simple toggle)
