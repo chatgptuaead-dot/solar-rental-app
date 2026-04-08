@@ -601,6 +601,48 @@
       color: var(--gray-400);
     }
 
+    /* ─── ANALOGY BANNER ─── */
+    .analogy-banner {
+      margin-top: 14px;
+      background: linear-gradient(135deg, #FFFBEB, #FFF7ED);
+      border: 1px solid #FDE68A;
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .analogy-banner-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .analogy-banner-text {
+      font-size: 12px;
+      color: var(--gray-600);
+      line-height: 1.5;
+    }
+
+    .analogy-banner-text strong {
+      color: var(--yellow-dark);
+      font-weight: 700;
+    }
+
+    .analogy-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #FEF3C7;
+      color: var(--yellow-dark);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin: 3px 3px 0 0;
+    }
+
     /* ─── ROOF MAP ─── */
     .roof-map-section {
       padding: 100px 24px;
@@ -1815,7 +1857,7 @@
       <div class="progress-track">
         <div class="progress-fill" id="energyProgressBar"></div>
       </div>
-      <div class="energy-progress-sub">0% of 250 kWh/m/year target reached — rent panels to start generating energy</div>
+      <div class="energy-progress-sub" id="progressAnalogy">0% of 250 kWh/m/year target reached — 250 kWh/year could power a laptop for 5,000 hours or charge a phone 25,000 times</div>
     </div>
 
   </div>
@@ -1877,6 +1919,15 @@
           <span class="spec-pill"><i class="fa-solid fa-bolt"></i> 500W</span>
           <span class="spec-pill"><i class="fa-solid fa-battery-three-quarters"></i> ~60 kWh/mo</span>
         </div>
+        <div class="analogy-banner">
+          <div class="analogy-banner-icon">💡</div>
+          <div class="analogy-banner-text">
+            <strong>60 kWh/month</strong> is enough to:<br>
+            <span class="analogy-tag"><i class="fa-solid fa-mobile-screen"></i> 6,000 phone charges</span>
+            <span class="analogy-tag"><i class="fa-solid fa-lightbulb"></i> Run 8 LED bulbs all month</span>
+            <span class="analogy-tag"><i class="fa-solid fa-laptop"></i> Power a laptop for 1,200 hrs</span>
+          </div>
+        </div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li><i class="fa-solid fa-circle-check"></i> 2 premium monocrystalline panels</li>
@@ -1911,6 +1962,15 @@
           <span class="spec-pill"><i class="fa-solid fa-bolt"></i> 1500W</span>
           <span class="spec-pill"><i class="fa-solid fa-battery-three-quarters"></i> ~185 kWh/mo</span>
         </div>
+        <div class="analogy-banner">
+          <div class="analogy-banner-icon">⚡</div>
+          <div class="analogy-banner-text">
+            <strong>185 kWh/month</strong> is enough to:<br>
+            <span class="analogy-tag"><i class="fa-solid fa-tv"></i> Stream Netflix for 18,500 hrs</span>
+            <span class="analogy-tag"><i class="fa-solid fa-car"></i> Drive an EV ~615 miles</span>
+            <span class="analogy-tag"><i class="fa-solid fa-snowflake"></i> Run an AC unit for 185 hrs</span>
+          </div>
+        </div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li><i class="fa-solid fa-circle-check"></i> 6 premium monocrystalline panels</li>
@@ -1943,6 +2003,15 @@
           <span class="spec-pill"><i class="fa-solid fa-solar-panel"></i> 12 Panels</span>
           <span class="spec-pill"><i class="fa-solid fa-bolt"></i> 3000W</span>
           <span class="spec-pill"><i class="fa-solid fa-battery-three-quarters"></i> ~370 kWh/mo</span>
+        </div>
+        <div class="analogy-banner">
+          <div class="analogy-banner-icon">🌞</div>
+          <div class="analogy-banner-text">
+            <strong>370 kWh/month</strong> is enough to:<br>
+            <span class="analogy-tag"><i class="fa-solid fa-house"></i> Cover ~40% of a home's needs</span>
+            <span class="analogy-tag"><i class="fa-solid fa-car"></i> Drive an EV ~1,230 miles</span>
+            <span class="analogy-tag"><i class="fa-solid fa-mug-hot"></i> Brew 37,000 cups of coffee</span>
+          </div>
         </div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
@@ -2353,6 +2422,29 @@
   document.getElementById('modalNameInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') submitRental();
   });
+
+  // ─── ENERGY ANALOGY ENGINE ───
+  // All ratios are approximate real-world averages
+  const ANALOGY_REFS = [
+    { icon: '📱', label: 'phone charges',        perKwh: 100,   fmt: v => `${v.toLocaleString()} phone charges` },
+    { icon: '💻', label: 'laptop hours',          perKwh: 20,    fmt: v => `power a laptop for ${v.toLocaleString()} hours` },
+    { icon: '📺', label: 'Netflix hours',         perKwh: 100,   fmt: v => `stream Netflix for ${v.toLocaleString()} hours` },
+    { icon: '💡', label: 'LED bulb months',       perKwh: 8.3,   fmt: v => `run ${Math.round(v)} LED bulbs for a month` },
+    { icon: '🚗', label: 'EV miles',              perKwh: 3.3,   fmt: v => `drive an EV ${v.toLocaleString()} miles` },
+    { icon: '☕', label: 'cups of coffee',        perKwh: 100,   fmt: v => `brew ${v.toLocaleString()} cups of coffee` },
+    { icon: '🏠', label: '% of home monthly use', perKwh: null,  fmt: (v, kwh) => `cover ${((kwh/900)*100).toFixed(1)}% of an average home's monthly electricity` },
+    { icon: '❄️', label: 'AC hours',              perKwh: 0.5,   fmt: v => `run an air conditioner for ${v.toLocaleString()} hours` },
+    { icon: '🍕', label: 'pizza ovens hours',     perKwh: 0.42,  fmt: v => `bake pizza for ${v.toLocaleString()} hours` },
+    { icon: '🔋', label: 'EV full charges',       perKwh: 0.013, fmt: v => `fully charge an EV battery ${v.toFixed(1)} times` },
+  ];
+
+  function kwhAnalogies(kwh, count = 3) {
+    if (kwh <= 0) return [];
+    return ANALOGY_REFS
+      .filter(r => r.perKwh !== null)
+      .slice(0, count)
+      .map(r => ({ icon: r.icon, text: r.fmt(Math.round(kwh * r.perKwh), kwh) }));
+  }
 
   // Mobile hamburger (simple toggle)
   function toggleMenu() {
