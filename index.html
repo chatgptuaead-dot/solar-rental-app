@@ -643,6 +643,151 @@
       margin: 3px 3px 0 0;
     }
 
+    /* ─── IMPACT AT A GLANCE ─── */
+    .impact-section {
+      padding: 80px 24px;
+      background: var(--white);
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .impact-grid { grid-template-columns: 1fr; }
+    }
+
+    .impact-card {
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      background: var(--gray-50);
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .impact-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .impact-card-accent {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    .impact-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .impact-card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .impact-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-500);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .impact-card-value {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--gray-800);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .impact-card-value span {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gray-400);
+    }
+
+    /* Empty state */
+    .impact-empty {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 8px;
+      padding: 16px 0;
+      color: var(--gray-300);
+    }
+
+    .impact-empty i {
+      font-size: 28px;
+    }
+
+    .impact-empty p {
+      font-size: 13px;
+      color: var(--gray-400);
+      line-height: 1.4;
+      max-width: 180px;
+    }
+
+    /* Analogy chips shown when data exists */
+    .impact-analogies {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .impact-analogy-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 10px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid var(--gray-100);
+      font-size: 13px;
+      color: var(--gray-600);
+      line-height: 1.35;
+      animation: fadeSlideIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateX(-8px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .impact-analogy-emoji {
+      font-size: 18px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .impact-analogy-text strong {
+      color: var(--gray-800);
+      font-weight: 700;
+    }
+
     /* ─── ROOF MAP ─── */
     .roof-map-section {
       padding: 100px 24px;
@@ -1166,6 +1311,32 @@
     .btn-plan.filled:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 28px rgba(245,158,11,0.45);
+    }
+
+    .btn-plan.buy {
+      margin-top: 8px;
+      background: transparent;
+      border: 2px solid #16a34a;
+      color: #16a34a;
+      font-weight: 700;
+    }
+
+    .btn-plan.buy:hover {
+      background: #16a34a;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(22,163,74,0.3);
+    }
+
+    .btn-plan.buy.air {
+      border-color: #7C3AED;
+      color: #7C3AED;
+    }
+
+    .btn-plan.buy.air:hover {
+      background: #7C3AED;
+      color: white;
+      box-shadow: 0 8px 20px rgba(124,58,237,0.3);
     }
 
     /* ─── GALLERY / PROOF ─── */
@@ -1863,6 +2034,67 @@
   </div>
 </section>
 
+<!-- IMPACT AT A GLANCE -->
+<section class="impact-section" id="impact">
+  <div class="section-inner">
+    <div class="section-tag"><i class="fa-solid fa-earth-americas"></i> Impact at a Glance</div>
+    <h2 class="section-title">What Our Energy Actually Means</h2>
+    <p class="section-sub">Numbers are just numbers — until you compare them to real life. As panels are rented, watch this section fill up with real-world impact.</p>
+
+    <div class="impact-grid">
+
+      <!-- Energy Produced -->
+      <div class="impact-card">
+        <div class="impact-card-accent" style="background: linear-gradient(90deg, var(--yellow), var(--orange));"></div>
+        <div class="impact-card-header">
+          <div class="impact-card-icon" style="background:#FEF3C7; color:var(--yellow-dark);"><i class="fa-solid fa-bolt"></i></div>
+          <div class="impact-card-title">Energy Produced</div>
+        </div>
+        <div class="impact-card-value">0 <span>kWh</span></div>
+        <div id="impactEnergy">
+          <div class="impact-empty">
+            <i class="fa-regular fa-sun"></i>
+            <p>Analogies will appear here once panels start producing energy</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CO₂ Offset -->
+      <div class="impact-card">
+        <div class="impact-card-accent" style="background: linear-gradient(90deg, var(--green), #16A34A);"></div>
+        <div class="impact-card-header">
+          <div class="impact-card-icon" style="background:#F0FDF4; color:var(--green-dark);"><i class="fa-solid fa-seedling"></i></div>
+          <div class="impact-card-title">CO₂ Offset</div>
+        </div>
+        <div class="impact-card-value">0 <span>kg</span></div>
+        <div id="impactCO2">
+          <div class="impact-empty">
+            <i class="fa-regular fa-leaf"></i>
+            <p>CO₂ impact analogies unlock when panels are active</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panels Rented -->
+      <div class="impact-card">
+        <div class="impact-card-accent" style="background: linear-gradient(90deg, #3B82F6, #6366F1);"></div>
+        <div class="impact-card-header">
+          <div class="impact-card-icon" style="background:#EFF6FF; color:#3B82F6;"><i class="fa-solid fa-solar-panel"></i></div>
+          <div class="impact-card-title">Panels Rented</div>
+        </div>
+        <div class="impact-card-value" id="impactPanelCount">0 <span>panels</span></div>
+        <div id="impactPanels">
+          <div class="impact-empty">
+            <i class="fa-regular fa-square"></i>
+            <p>Be the first to rent — your impact shows up here instantly</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- HOW IT WORKS -->
 <section class="how" id="how">
   <div class="section-inner">
@@ -1942,6 +2174,9 @@
         <button class="btn-plan outline" onclick="openModal('Starter — $29/month')">
           <i class="fa-solid fa-solar-panel"></i> Rent Now
         </button>
+        <button class="btn-plan buy" onclick="openBuyModal('Starter Solar — $799', 'solar')">
+          <i class="fa-solid fa-cart-shopping"></i> Buy — $799
+        </button>
       </div>
 
       <!-- Standard (Popular) -->
@@ -1985,6 +2220,9 @@
         <button class="btn-plan filled" onclick="openModal('Standard — $69/month')">
           <i class="fa-solid fa-solar-panel"></i> Rent Now
         </button>
+        <button class="btn-plan buy" onclick="openBuyModal('Standard Solar — $2,199', 'solar')">
+          <i class="fa-solid fa-cart-shopping"></i> Buy — $2,199
+        </button>
       </div>
 
       <!-- Premium -->
@@ -2026,6 +2264,9 @@
         </ul>
         <button class="btn-plan outline" onclick="openModal('Premium — $119/month')">
           <i class="fa-solid fa-solar-panel"></i> Rent Now
+        </button>
+        <button class="btn-plan buy" onclick="openBuyModal('Premium Solar — $3,999', 'solar')">
+          <i class="fa-solid fa-cart-shopping"></i> Buy — $3,999
         </button>
       </div>
 
@@ -2073,6 +2314,9 @@
         <button class="btn-plan outline" style="border-color:#7C3AED; color:#7C3AED;" onclick="openModal('Basic Air Purifier — $19/month')">
           <i class="fa-solid fa-wind"></i> Rent Now
         </button>
+        <button class="btn-plan buy air" onclick="openBuyModal('Basic Air Purifier — $299', 'air')">
+          <i class="fa-solid fa-cart-shopping"></i> Buy — $299
+        </button>
       </div>
 
       <!-- Pro Air (Popular) -->
@@ -2107,6 +2351,9 @@
         <button class="btn-plan filled" style="background: linear-gradient(135deg, #7C3AED, #8B5CF6);" onclick="openModal('Pro Air Purifier — $49/month')">
           <i class="fa-solid fa-wind"></i> Rent Now
         </button>
+        <button class="btn-plan buy air" onclick="openBuyModal('Pro Air Purifier — $699', 'air')">
+          <i class="fa-solid fa-cart-shopping"></i> Buy — $699
+        </button>
       </div>
 
       <!-- Elite Air -->
@@ -2139,6 +2386,9 @@
         </ul>
         <button class="btn-plan outline" style="border-color:#7C3AED; color:#7C3AED;" onclick="openModal('Elite Air Purifier — $99/month')">
           <i class="fa-solid fa-wind"></i> Rent Now
+        </button>
+        <button class="btn-plan buy air" onclick="openBuyModal('Elite Air Purifier — $1,299', 'air')">
+          <i class="fa-solid fa-cart-shopping"></i> Buy — $1,299
         </button>
       </div>
 
@@ -2334,6 +2584,34 @@
   </div>
 </div>
 
+<!-- BUY MODAL -->
+<div class="modal-overlay" id="buyModalOverlay" onclick="handleBuyOverlayClick(event)">
+  <div class="modal" id="buyModal">
+    <button class="modal-close" onclick="closeBuyModal()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-icon" id="buyModalIcon">🛒</div>
+    <h2 class="modal-title" id="buyModalTitle">Own It Outright</h2>
+    <p class="modal-sub" id="buyModalSub">Enter your details and an advisor will contact you within 24 hours to finalise your purchase and schedule delivery.</p>
+    <div class="modal-plan-chip" id="buyModalChip">
+      <i class="fa-solid fa-cart-shopping" id="buyModalChipIcon"></i>
+      <span id="buyModalPlanName">Starter Solar — $799</span>
+    </div>
+    <div class="modal-name-field">
+      <label for="buyModalNameInput">Your full name</label>
+      <input type="text" id="buyModalNameInput" class="modal-name-input" placeholder="e.g. Alex Johnson" maxlength="40" />
+      <span class="modal-name-error" id="buyModalNameError">Please enter your name to continue.</span>
+    </div>
+    <div class="modal-steps" id="buyModalSteps">
+      <div class="modal-step"><i class="fa-solid fa-circle-check"></i> One-time payment — no monthly fees</div>
+      <div class="modal-step"><i class="fa-solid fa-circle-check"></i> Advisor call within 24 hours</div>
+      <div class="modal-step"><i class="fa-solid fa-circle-check"></i> Free delivery & professional installation</div>
+      <div class="modal-step"><i class="fa-solid fa-circle-check"></i> 10-year manufacturer warranty</div>
+    </div>
+    <button class="btn-modal-close" id="buyModalSubmitBtn" style="background: linear-gradient(135deg, #16a34a, #22c55e); box-shadow: 0 6px 20px rgba(22,163,74,0.35);" onclick="submitBuy()">
+      <i class="fa-solid fa-cart-shopping"></i> Request Purchase
+    </button>
+  </div>
+</div>
+
 <script>
   // ─── ROOF MAP ───
   const TOTAL_SLOTS = 200;
@@ -2403,6 +2681,7 @@
     localStorage.setItem('solarRentals', JSON.stringify(rentedPanels));
     closeModal();
     buildRoofGrid();
+    updateImpactSection();
     // Scroll to roof map so they see their name
     setTimeout(() => {
       document.getElementById('roof-map').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -2417,11 +2696,83 @@
 
   // Close modal on Escape key, submit on Enter in name field
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') { closeModal(); closeBuyModal(); }
   });
   document.getElementById('modalNameInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') submitRental();
   });
+  document.getElementById('buyModalNameInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') submitBuy();
+  });
+
+  // ─── BUY MODAL ───
+  let _currentBuyPlan = '';
+
+  function openBuyModal(planName, type) {
+    _currentBuyPlan = planName;
+    document.getElementById('buyModalPlanName').textContent = planName;
+    document.getElementById('buyModalNameInput').value = '';
+    document.getElementById('buyModalNameInput').classList.remove('error');
+    document.getElementById('buyModalNameError').style.display = 'none';
+
+    const isAir = type === 'air';
+    const icon = isAir ? '💨' : '☀️';
+    const title = isAir ? 'Own Your Air Purifier' : 'Own Your Solar Panels';
+    const sub = isAir
+      ? 'Enter your details and an advisor will contact you within 24 hours to finalise your purchase and arrange delivery.'
+      : 'Enter your details and an advisor will contact you within 24 hours to finalise your purchase and schedule installation.';
+    const steps = isAir
+      ? ['One-time payment — no monthly fees', 'Advisor call within 24 hours', 'Free delivery & setup included', '5-year manufacturer warranty']
+      : ['One-time payment — no monthly fees', 'Advisor call within 24 hours', 'Free professional installation', '10-year manufacturer warranty'];
+    const btnColor = isAir
+      ? 'linear-gradient(135deg, #7C3AED, #8B5CF6)'
+      : 'linear-gradient(135deg, #16a34a, #22c55e)';
+    const btnShadow = isAir
+      ? '0 6px 20px rgba(124,58,237,0.35)'
+      : '0 6px 20px rgba(22,163,74,0.35)';
+    const chipIcon = isAir ? 'fa-wind' : 'fa-solar-panel';
+
+    document.getElementById('buyModalIcon').textContent = icon;
+    document.getElementById('buyModalTitle').textContent = title;
+    document.getElementById('buyModalSub').textContent = sub;
+    document.getElementById('buyModalChipIcon').className = `fa-solid ${chipIcon}`;
+    document.getElementById('buyModalSubmitBtn').style.background = btnColor;
+    document.getElementById('buyModalSubmitBtn').style.boxShadow = btnShadow;
+
+    const stepsEl = document.getElementById('buyModalSteps');
+    stepsEl.innerHTML = steps.map(s => `<div class="modal-step"><i class="fa-solid fa-circle-check"></i> ${s}</div>`).join('');
+
+    document.getElementById('buyModalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('buyModalNameInput').focus(), 300);
+  }
+
+  function closeBuyModal() {
+    document.getElementById('buyModalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function submitBuy() {
+    const nameInput = document.getElementById('buyModalNameInput');
+    const name = nameInput.value.trim();
+    if (!name) {
+      nameInput.classList.add('error');
+      document.getElementById('buyModalNameError').style.display = 'block';
+      nameInput.focus();
+      return;
+    }
+    closeBuyModal();
+    // Show a thank-you alert
+    setTimeout(() => {
+      alert(`Thanks, ${name}! Your purchase request for "${_currentBuyPlan}" has been received. An advisor will reach out within 24 hours.`);
+    }, 300);
+  }
+
+  function handleBuyOverlayClick(e) {
+    if (e.target === document.getElementById('buyModalOverlay')) {
+      closeBuyModal();
+    }
+  }
 
   // ─── ENERGY ANALOGY ENGINE ───
   // All ratios are approximate real-world averages
@@ -2445,6 +2796,53 @@
       .slice(0, count)
       .map(r => ({ icon: r.icon, text: r.fmt(Math.round(kwh * r.perKwh), kwh) }));
   }
+
+  // CO2 analogies (kg of CO2)
+  const CO2_ANALOGIES = [
+    { icon: '🌳', fmt: kg => `equivalent to planting <strong>${Math.round(kg / 21.7)} trees</strong> for a year` },
+    { icon: '🚗', fmt: kg => `same as taking a car off the road for <strong>${Math.round(kg / 0.21)} km</strong>` },
+    { icon: '✈️', fmt: kg => `offset <strong>${Math.round(kg / 255 * 100)}%</strong> of a one-way flight (NYC→LA)` },
+  ];
+
+  // Panel count analogies
+  const PANEL_ANALOGIES = [
+    { icon: '🏠', fmt: n => `enough to partially power <strong>${Math.round(n * 0.05 * 10) / 10} homes</strong>` },
+    { icon: '🌍', fmt: n => `producing the equivalent of <strong>${Math.round(n * 30)} kg</strong> less CO₂ per month` },
+    { icon: '💧', fmt: n => `saving approx. <strong>${(n * 1500).toLocaleString()} litres</strong> of water vs. coal power` },
+  ];
+
+  function renderAnalogies(containerId, rows) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    if (rows.length === 0) return; // leave empty state in place
+    el.innerHTML = `<div class="impact-analogies">${
+      rows.map((r, i) => `
+        <div class="impact-analogy-row" style="animation-delay:${i * 0.1}s">
+          <span class="impact-analogy-emoji">${r.icon}</span>
+          <span class="impact-analogy-text">${r.text}</span>
+        </div>`).join('')
+    }</div>`;
+  }
+
+  function updateImpactSection() {
+    const panelCount = rentedPanels.length;
+    // Approximate: each panel produces ~30 kWh/month, 0.4 kg CO2 offset per kWh
+    const kwh   = panelCount * 30;
+    const co2kg = kwh * 0.4;
+
+    // Energy card
+    document.querySelector('#impactEnergy').previousElementSibling.textContent = kwh > 0 ? `${kwh.toLocaleString()} ` : '0 ';
+    if (kwh > 0) renderAnalogies('impactEnergy', kwhAnalogies(kwh));
+
+    // CO2 card
+    if (co2kg > 0) renderAnalogies('impactCO2', CO2_ANALOGIES.map(a => ({ icon: a.icon, text: a.fmt(co2kg) })));
+
+    // Panels card
+    document.getElementById('impactPanelCount').innerHTML = `${panelCount} <span>panels</span>`;
+    if (panelCount > 0) renderAnalogies('impactPanels', PANEL_ANALOGIES.map(a => ({ icon: a.icon, text: a.fmt(panelCount) })));
+  }
+
+  updateImpactSection();
 
   // Mobile hamburger (simple toggle)
   function toggleMenu() {
